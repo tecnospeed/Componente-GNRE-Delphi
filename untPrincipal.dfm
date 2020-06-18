@@ -1,8 +1,9 @@
 object frmPrincipal: TfrmPrincipal
-  Left = 364
-  Top = 185
-  Width = 1017
-  Height = 533
+  Left = 626
+  Top = 211
+  Width = 554
+  Height = 663
+  AutoSize = True
   Caption = 'Componente GNRe - Demonstra'#231#227'o'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -14,74 +15,46 @@ object frmPrincipal: TfrmPrincipal
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object lblProtocolo: TLabel
-    Left = 529
-    Top = 11
-    Width = 67
-    Height = 16
-    Caption = 'Protocolo:'
+  object Label2: TLabel
+    Left = 189
+    Top = 2
+    Width = 106
+    Height = 13
+    Caption = 'CNPJ SoftwareHouse:'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
+    Font.Height = -11
     Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
+    Font.Style = []
     ParentFont = False
   end
-  object lblCertificado: TLabel
-    Left = 11
-    Top = 9
-    Width = 75
-    Height = 16
-    Caption = 'Certificado:'
+  object Label3: TLabel
+    Left = 373
+    Top = 2
+    Width = 110
+    Height = 13
+    Caption = 'Token SoftwareHouse:'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
+    Font.Height = -11
     Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
+    Font.Style = []
     ParentFont = False
-  end
-  object lblUF: TLabel
-    Left = 922
-    Top = 11
-    Width = 23
-    Height = 16
-    Caption = 'UF: '
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
-  object cbCertificados: TComboBox
-    Left = 92
-    Top = 8
-    Width = 420
-    Height = 21
-    ItemHeight = 13
-    TabOrder = 0
-  end
-  object edtProtocolo: TEdit
-    Left = 601
-    Top = 8
-    Width = 314
-    Height = 21
-    TabOrder = 1
   end
   object pgXmlDestinatario: TPageControl
-    Left = 11
-    Top = 256
-    Width = 505
-    Height = 234
+    Left = 0
+    Top = 242
+    Width = 546
+    Height = 390
     ActivePage = tsXMLDestinatario
-    TabOrder = 2
+    TabOrder = 0
     object tsXMLDestinatario: TTabSheet
       Caption = 'XML Destinat'#225'rio'
       object mmXML: TMemo
         Left = 0
         Top = 0
-        Width = 497
-        Height = 206
+        Width = 538
+        Height = 362
         Align = alClient
         BorderStyle = bsNone
         ScrollBars = ssVertical
@@ -89,21 +62,14 @@ object frmPrincipal: TfrmPrincipal
         OnKeyDown = mmCtrlA
       end
     end
-  end
-  object pgcTX2Complementar: TPageControl
-    Left = 527
-    Top = 47
-    Width = 467
-    Height = 199
-    ActivePage = tsTX2Complementar
-    TabOrder = 3
-    object tsTX2Complementar: TTabSheet
-      Caption = 'Par'#226'metros Complementares (TX2 Complementar)'
+    object pgcTX2Complementar: TTabSheet
+      Caption = 'TX2 Complementar'
+      ImageIndex = 1
       object mmTX2Complementar: TMemo
         Left = 0
         Top = 0
-        Width = 459
-        Height = 171
+        Width = 538
+        Height = 362
         Align = alClient
         BorderStyle = bsNone
         Font.Charset = EASTEUROPE_CHARSET
@@ -117,21 +83,14 @@ object frmPrincipal: TfrmPrincipal
         OnKeyDown = mmCtrlA
       end
     end
-  end
-  object pgRetorno: TPageControl
-    Left = 529
-    Top = 256
-    Width = 467
-    Height = 234
-    ActivePage = tsRetorno
-    TabOrder = 4
-    object tsRetorno: TTabSheet
+    object pgRetorno: TTabSheet
       Caption = 'Retorno'
+      ImageIndex = 2
       object mmRetorno: TMemo
         Left = 0
         Top = 0
-        Width = 459
-        Height = 206
+        Width = 538
+        Height = 362
         Align = alClient
         BorderStyle = bsNone
         ScrollBars = ssVertical
@@ -140,132 +99,232 @@ object frmPrincipal: TfrmPrincipal
       end
     end
   end
-  object pgcGeral: TPageControl
-    Left = 11
-    Top = 47
-    Width = 505
-    Height = 114
-    ActivePage = tsMenuPrincipal
-    TabOrder = 5
-    object tsMenuPrincipal: TTabSheet
-      Caption = 'M'#233'todos'
-      object btnConfigurarIni: TButton
-        Left = 333
-        Top = 6
-        Width = 155
-        Height = 34
-        Caption = 'Configurar Arquivo INI'
-        TabOrder = 2
-        OnClick = btnConfigurarIniClick
-      end
-      object btnLoadConfig: TButton
-        Left = 172
-        Top = 6
-        Width = 155
-        Height = 34
-        Caption = 'Load Config'
-        TabOrder = 1
-        OnClick = btnLoadConfigClick
-      end
-      object btnConsultaReciboGuia: TButton
-        Left = 172
-        Top = 46
-        Width = 155
-        Height = 34
-        Caption = 'Consulta Recibo Guia'
-        TabOrder = 4
-        OnClick = btnConsultaReciboGuiaClick
-      end
-      object btnEnviarGuia: TButton
-        Left = 5
-        Top = 46
-        Width = 161
-        Height = 34
-        Caption = 'Enviar Guia'
-        TabOrder = 3
-        OnClick = btnEnviarGuiaClick
-      end
-      object btnVisualizarGnre: TButton
-        Left = 333
-        Top = 46
-        Width = 155
-        Height = 34
-        Caption = 'Visualizar Gnre'
-        TabOrder = 5
-        OnClick = btnVisualizarGnreClick
-      end
-      object rgConfig: TRadioGroup
-        Left = 5
-        Top = 6
-        Width = 161
-        Height = 34
-        Caption = 'Modo configura'#231#227'o:'
-        Columns = 2
-        ItemIndex = 0
-        Items.Strings = (
-          'Via INI'
-          'Via Fonte')
-        TabOrder = 0
-      end
+  object GroupBox1: TGroupBox
+    Left = 2
+    Top = 0
+    Width = 185
+    Height = 241
+    Caption = 'Configura'#231#245'es'
+    TabOrder = 1
+    object lblProtocolo: TLabel
+      Left = 6
+      Top = 93
+      Width = 104
+      Height = 13
+      Caption = 'N'#250'mero do Protocolo:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label1: TLabel
+      Left = 6
+      Top = 54
+      Width = 29
+      Height = 13
+      Caption = 'CNPJ:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblUF: TLabel
+      Left = 6
+      Top = 15
+      Width = 20
+      Height = 13
+      Caption = 'UF: '
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object edtProtocolo: TEdit
+      Left = 6
+      Top = 107
+      Width = 172
+      Height = 21
+      TabOrder = 0
+    end
+    object edtCNPJ: TEdit
+      Left = 6
+      Top = 68
+      Width = 172
+      Height = 21
+      TabOrder = 1
+    end
+    object edtUF: TEdit
+      Left = 6
+      Top = 30
+      Width = 40
+      Height = 21
+      ReadOnly = True
+      TabOrder = 2
+    end
+    object rgConfig: TRadioGroup
+      Left = 6
+      Top = 145
+      Width = 172
+      Height = 33
+      Caption = 'Modo configura'#231#227'o:'
+      Columns = 2
+      ItemIndex = 0
+      Items.Strings = (
+        'Via INI'
+        'Via Fonte')
+      TabOrder = 3
     end
   end
-  object edtUF: TEdit
-    Left = 950
-    Top = 8
-    Width = 40
+  object GroupBox2: TGroupBox
+    Left = 189
+    Top = 37
+    Width = 356
+    Height = 203
+    Caption = 'Opera'#231#245'es'
+    Ctl3D = False
+    ParentCtl3D = False
+    TabOrder = 2
+    object lblCertificado: TLabel
+      Left = 6
+      Top = 16
+      Width = 56
+      Height = 13
+      Caption = 'Certificado:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object pgcGeral: TPageControl
+      Left = 6
+      Top = 60
+      Width = 343
+      Height = 140
+      ActivePage = tsMenuPrincipal
+      TabOrder = 0
+      object tsMenuPrincipal: TTabSheet
+        Caption = 'M'#233'todos'
+        object btnConfigurarIni: TButton
+          Left = 4
+          Top = 9
+          Width = 155
+          Height = 29
+          Caption = '1 - Configurar Arquivo INI'
+          TabOrder = 0
+          OnClick = btnConfigurarIniClick
+        end
+        object btnConsultaReciboGuia: TButton
+          Left = 87
+          Top = 77
+          Width = 155
+          Height = 29
+          Caption = '5 - Consulta Recibo Guia'
+          TabOrder = 2
+          OnClick = btnConsultaReciboGuiaClick
+        end
+        object btnEnviarGuia: TButton
+          Left = 173
+          Top = 43
+          Width = 155
+          Height = 29
+          Caption = '4 - Enviar Guia'
+          TabOrder = 1
+          OnClick = btnEnviarGuiaClick
+        end
+        object btnLoadConfig: TButton
+          Left = 173
+          Top = 8
+          Width = 155
+          Height = 29
+          Caption = '2 - Load Config'
+          TabOrder = 3
+          OnClick = btnLoadConfigClick
+        end
+        object btCarregarXML: TButton
+          Left = 4
+          Top = 43
+          Width = 155
+          Height = 29
+          Caption = '3 - Carregar XML Destinat'#225'rio'
+          TabOrder = 4
+          OnClick = btCarregarXMLClick
+        end
+      end
+      object TabSheet1: TTabSheet
+        Caption = 'Impress'#227'o'
+        ImageIndex = 1
+        object btnImprimirGuia: TButton
+          Left = 173
+          Top = 43
+          Width = 155
+          Height = 29
+          Caption = 'Imprimir'
+          TabOrder = 0
+          OnClick = btnImprimirGuiaClick
+        end
+        object btnExportarGnre: TButton
+          Left = 4
+          Top = 9
+          Width = 155
+          Height = 29
+          Caption = 'Exportar'
+          TabOrder = 1
+          OnClick = btnExportarGnreClick
+        end
+        object btnEditarModeloGuia: TButton
+          Left = 173
+          Top = 8
+          Width = 155
+          Height = 29
+          Caption = 'Editar Layout'
+          TabOrder = 2
+          OnClick = btnEditarModeloGuiaClick
+        end
+        object btnVisualizarGnre: TButton
+          Left = 4
+          Top = 43
+          Width = 155
+          Height = 29
+          Caption = 'Visualizar GNRe'
+          TabOrder = 3
+          OnClick = btnVisualizarGnreClick
+        end
+      end
+    end
+    object cbCertificados: TComboBox
+      Left = 6
+      Top = 33
+      Width = 345
+      Height = 21
+      ItemHeight = 13
+      TabOrder = 1
+      OnChange = cbCertificadosChange
+    end
+  end
+  object edtCnpjSoftwareHouse: TEdit
+    Left = 189
+    Top = 17
+    Width = 172
     Height = 21
-    ReadOnly = True
-    TabOrder = 6
+    TabOrder = 3
   end
-  object pgcImpressao: TPageControl
-    Left = 8
-    Top = 171
-    Width = 504
-    Height = 75
-    ActivePage = tsImpressao
-    TabOrder = 7
-    object tsImpressao: TTabSheet
-      Caption = 'Impress'#227'o'
-      object btnImprimirGuia: TButton
-        Left = 8
-        Top = 6
-        Width = 161
-        Height = 34
-        Caption = 'Imprimir'
-        TabOrder = 0
-        OnClick = btnImprimirGuiaClick
-      end
-      object btnExportarGnre: TButton
-        Left = 175
-        Top = 6
-        Width = 155
-        Height = 34
-        Caption = 'Exportar'
-        TabOrder = 1
-        OnClick = btnExportarGnreClick
-      end
-      object btnEditarModeloGuia: TButton
-        Left = 336
-        Top = 6
-        Width = 155
-        Height = 34
-        Caption = 'Editar Layout'
-        TabOrder = 2
-        OnClick = btnEditarModeloGuiaClick
-      end
-    end
-  end
-  object btCarregarXML: TButton
-    Left = 365
-    Top = 280
-    Width = 131
-    Height = 25
-    Caption = 'Carregar XML'
-    TabOrder = 8
-    OnClick = btCarregarXMLClick
+  object edtTokenSoftwareHouse: TEdit
+    Left = 373
+    Top = 17
+    Width = 172
+    Height = 21
+    TabOrder = 4
   end
   object OpenDialog: TOpenDialog
-    Left = 81
-    Top = 440
+    Left = 73
+    Top = 200
   end
 end

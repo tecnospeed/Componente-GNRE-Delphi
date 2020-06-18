@@ -4,40 +4,45 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, ComCtrls, spdGnre, spdGnreType, ShellAPI;
+  Dialogs, StdCtrls, IniFiles, ExtCtrls, ComCtrls, spdGnre, spdGnreType, ShellAPI;
 
 type
   TfrmPrincipal = class(TForm)
-    lblProtocolo: TLabel;
-    lblCertificado: TLabel;
-    lblUF: TLabel;
-    cbCertificados: TComboBox;
-    edtProtocolo: TEdit;
     pgXmlDestinatario: TPageControl;
     tsXMLDestinatario: TTabSheet;
     mmXML: TMemo;
-    pgcTX2Complementar: TPageControl;
-    tsTX2Complementar: TTabSheet;
+    OpenDialog: TOpenDialog;
+    pgcTX2Complementar: TTabSheet;
     mmTX2Complementar: TMemo;
-    pgRetorno: TPageControl;
-    tsRetorno: TTabSheet;
+    pgRetorno: TTabSheet;
     mmRetorno: TMemo;
+    GroupBox1: TGroupBox;
+    lblProtocolo: TLabel;
+    Label1: TLabel;
+    edtProtocolo: TEdit;
+    edtCNPJ: TEdit;
+    lblUF: TLabel;
+    edtUF: TEdit;
+    rgConfig: TRadioGroup;
+    GroupBox2: TGroupBox;
+    lblCertificado: TLabel;
     pgcGeral: TPageControl;
     tsMenuPrincipal: TTabSheet;
     btnConfigurarIni: TButton;
-    btnLoadConfig: TButton;
     btnConsultaReciboGuia: TButton;
     btnEnviarGuia: TButton;
-    btnVisualizarGnre: TButton;
-    rgConfig: TRadioGroup;
-    edtUF: TEdit;
-    pgcImpressao: TPageControl;
-    tsImpressao: TTabSheet;
+    btnLoadConfig: TButton;
+    btCarregarXML: TButton;
+    TabSheet1: TTabSheet;
     btnImprimirGuia: TButton;
     btnExportarGnre: TButton;
     btnEditarModeloGuia: TButton;
-    OpenDialog: TOpenDialog;
-    btCarregarXML: TButton;
+    btnVisualizarGnre: TButton;
+    cbCertificados: TComboBox;
+    Label2: TLabel;
+    edtCnpjSoftwareHouse: TEdit;
+    edtTokenSoftwareHouse: TEdit;
+    Label3: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure mmCtrlA(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure btnLoadConfigClick(Sender: TObject);
@@ -49,16 +54,19 @@ type
     procedure btnExportarGnreClick(Sender: TObject);
     procedure btnEditarModeloGuiaClick(Sender: TObject);
     procedure btCarregarXMLClick(Sender: TObject);
+    procedure cbCertificadosChange(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
     spdGnre: TspdGnre;
     tx2Complementar: TStringList;
+
   end;
 
 var
   frmPrincipal: TfrmPrincipal;
+  vIni: TIniFile;
 
 implementation
 
@@ -67,10 +75,11 @@ implementation
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
   spdGnre := TspdGnre.Create(nil);
-  spdGnre.ConfigurarSoftwareHouse('08187168000160', '');
   spdGnre.LoadConfig();
   cbCertificados.Text := spdGnre.NomeCertificado.Text;
   spdGNRe.ListarCertificados(cbCertificados.Items);
+
+  vIni := TIniFile.Create(ExtractFilePath(ParamStr(0))+ 'gnreconfig.ini');
 
   tx2Complementar := TStringList.Create;
   tx2Complementar.LoadFromFile(ExtractFilePath(ParamStr(0)) + 'TX2Complementar.tx2');
@@ -93,7 +102,14 @@ procedure TfrmPrincipal.btnLoadConfigClick(Sender: TObject);
 begin
   if rgConfig.ItemIndex = 0 then
   begin
-     spdGnre.LoadConfig();
+    spdGnre.LoadConfig();
+
+    edtUF.Text          := vIni.ReadString('NFCE', 'UF', '');
+    cbCertificados.Text := spdGnre.NomeCertificado.text;
+    edtCNPJ.Text        := vIni.ReadString('NFCE', 'CNPJ', '');
+
+    spdGnre.ConfigurarSoftwareHouse(edtCnpjSoftwareHouse.Text, edtTokenSoftwareHouse.text);
+
   end
   else
   begin
@@ -133,6 +149,7 @@ begin
   mmRetorno.Text := spdGNRe.EnviarGuia(mmXml.Text, mmTx2Complementar.Text);
   edtUF.Text := spdGNRe.ExtrairUFDestinatario(mmXml.Text);
   edtProtocolo.Text := spdGNRe.ExtrairNumeroRecibo(mmretorno.Text);
+  pgRetorno.setFocus;
 end;
 
 procedure TfrmPrincipal.btnConsultaReciboGuiaClick(Sender: TObject);
@@ -173,6 +190,11 @@ begin
     vXML := OpenDialog.FileName;
     mmXml.Lines.LoadFromFile(vXML);
   end;
+end;
+
+procedure TfrmPrincipal.cbCertificadosChange(Sender: TObject);
+begin
+  vIni.WriteString('NFCE', 'NomeCertificado', cbCertificados.Text);
 end;
 
 end.
